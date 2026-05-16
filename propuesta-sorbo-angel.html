@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Propuesta · Café Sorbo de Ángel × Vyntra Orbit</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;1,9..144,300;1,9..144,400;1,9..144,600&family=Lato:ital,wght@0,300;0,400;0,700;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --cream:       #F5F0E8;
+  --cream-dark:  #EDE7D9;
+  --brown:       #3B2A1A;
+  --brown-mid:   #6B4C30;
+  --brown-light: #A07850;
+  --gold:        #C9953A;
+  --gold-light:  #E8C87A;
+  --white:       #FDFAF5;
+  --text:        #2A1E12;
+  --text-muted:  #7A6555;
+}
+
+html { scroll-behavior: smooth; }
+body { font-family: 'Lato', sans-serif; background: var(--cream); color: var(--text); overflow-x: hidden; }
+
+/* ── HERO ── */
+.hero {
+  min-height: 100vh;
+  background: var(--brown);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  position: relative; padding: 4rem 2rem; overflow: hidden; text-align: center;
+}
+.hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 80% 60% at 50% 40%, rgba(201,149,58,0.14) 0%, transparent 70%);
+}
+.hero-grain {
+  position: absolute; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
+  opacity: 0.45; pointer-events: none;
+}
+.badge {
+  font-family: 'Lato', sans-serif;
+  font-size: 12px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--gold-light); border: 1px solid rgba(201,149,58,0.35); padding: 8px 22px;
+  border-radius: 100px; margin-bottom: 2.5rem;
+  opacity: 0; animation: fadeUp 0.8s 0.2s forwards;
+}
+.hero-eyebrow {
+  font-family: 'Lato', sans-serif; font-style: italic; font-weight: 300;
+  font-size: clamp(1.1rem, 2.5vw, 1.4rem); color: var(--brown-light);
+  letter-spacing: 0.06em;
+  margin-bottom: 1.2rem; opacity: 0; animation: fadeUp 0.8s 0.4s forwards;
+}
+.hero h1 {
+  font-family: 'Fraunces', serif; font-weight: 300;
+  font-size: clamp(3.6rem, 11vw, 8rem); line-height: 1.0;
+  color: var(--white); max-width: 900px;
+  opacity: 0; animation: fadeUp 0.9s 0.5s forwards;
+}
+.hero h1 em { font-style: italic; color: var(--gold-light); font-weight: 300; }
+.hero-sub {
+  font-family: 'Lato', sans-serif;
+  font-size: clamp(1.05rem, 2.2vw, 1.25rem); font-weight: 300;
+  color: rgba(253,250,245,0.62); max-width: 560px; line-height: 1.9;
+  margin-top: 2.2rem; opacity: 0; animation: fadeUp 0.8s 0.8s forwards;
+}
+.scroll-hint {
+  position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%);
+  display: flex; flex-direction: column; align-items: center; gap: 10px;
+  opacity: 0; animation: fadeUp 0.8s 1.2s forwards;
+}
+.scroll-hint span { font-family: 'Lato', sans-serif; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(253,250,245,0.3); font-weight: 700; }
+.scroll-line { width: 1px; height: 52px; background: linear-gradient(to bottom, rgba(201,149,58,0.6), transparent); animation: scrollPulse 2s ease-in-out infinite; }
+
+/* ── LAYOUT ── */
+.section { padding: 7rem 2rem; max-width: 1040px; margin: 0 auto; }
+.section-label { font-family: 'Lato', sans-serif; font-size: 11px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--gold); font-weight: 700; margin-bottom: 1.2rem; }
+
+h2 {
+  font-family: 'Fraunces', serif; font-weight: 300;
+  font-size: clamp(2.6rem, 6.5vw, 4.5rem); line-height: 1.1;
+  color: var(--brown); margin-bottom: 1.6rem;
+}
+h2 em { font-style: italic; color: var(--brown-light); font-weight: 300; }
+
+.lead {
+  font-family: 'Lato', sans-serif;
+  font-size: clamp(1.05rem, 2vw, 1.2rem); font-weight: 300;
+  color: var(--text-muted); line-height: 1.9; max-width: 600px;
+}
+.divider { width: 100%; height: 1px; background: linear-gradient(to right, transparent, var(--gold), transparent); opacity: 0.25; }
+
+/* ── PROBLEMA ── */
+.problem-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5px; background: rgba(59,42,26,0.1); border-radius: 18px; overflow: hidden; margin-top: 3.5rem; }
+.problem-item { background: var(--white); padding: 2.4rem 2rem; transition: background 0.2s; }
+.problem-item:hover { background: var(--cream-dark); }
+.problem-icon { font-size: 1.9rem; margin-bottom: 1.1rem; display: block; }
+.problem-item h3 {
+  font-family: 'Fraunces', serif; font-size: 1.55rem; font-weight: 400;
+  color: var(--brown); margin-bottom: 0.65rem; line-height: 1.2;
+}
+.problem-item p { font-family: 'Lato', sans-serif; font-size: 1rem; font-weight: 300; color: var(--text-muted); line-height: 1.75; }
+
+/* ── SERVICIOS ── */
+.services-bg { background: var(--brown); padding: 7rem 0; }
+.services-inner { max-width: 1040px; margin: 0 auto; padding: 0 2rem; }
+.services-bg .section-label { color: var(--gold-light); }
+.services-bg h2 { color: var(--white); }
+.services-bg h2 em { color: var(--gold-light); }
+.services-bg .lead { color: rgba(253,250,245,0.55); }
+
+.service-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5px; margin-top: 3.5rem; background: rgba(255,255,255,0.06); border-radius: 18px; overflow: hidden; }
+.service-card { background: rgba(255,255,255,0.04); padding: 2.8rem 2.4rem; transition: background 0.25s; }
+.service-card:hover { background: rgba(255,255,255,0.08); }
+.service-card.featured { background: var(--gold); }
+.service-card.featured:hover { background: #D4A040; }
+
+.service-num {
+  font-family: 'Fraunces', serif; font-size: 5rem; font-weight: 300;
+  color: rgba(255,255,255,0.1); line-height: 1; margin-bottom: 1.5rem; display: block;
+}
+.service-card.featured .service-num { color: rgba(59,42,26,0.15); }
+
+.service-card h3 {
+  font-family: 'Fraunces', serif; font-size: 2rem; font-weight: 400;
+  color: var(--white); margin-bottom: 0.9rem; line-height: 1.2;
+}
+.service-card.featured h3 { color: var(--brown); }
+.service-card p { font-family: 'Lato', sans-serif; font-size: 1.05rem; font-weight: 300; color: rgba(253,250,245,0.62); line-height: 1.85; }
+.service-card.featured p { color: rgba(42,30,18,0.72); }
+
+.service-tag {
+  display: inline-block; margin-top: 1.8rem;
+  font-family: 'Lato', sans-serif; font-size: 11px; letter-spacing: 0.15em;
+  text-transform: uppercase; font-weight: 700;
+  color: var(--gold-light); border: 1px solid rgba(201,149,58,0.35);
+  padding: 5px 14px; border-radius: 100px;
+}
+.service-card.featured .service-tag { color: var(--brown); border-color: rgba(59,42,26,0.25); }
+
+/* ── GARANTÍA ── */
+.guarantee-strip { background: var(--gold); padding: 4rem 2rem; text-align: center; }
+.guarantee-strip p {
+  font-family: 'Fraunces', serif; font-size: clamp(1.4rem, 4vw, 2.6rem);
+  font-weight: 300; font-style: italic;
+  color: var(--brown); max-width: 780px; margin: 0 auto; line-height: 1.45;
+}
+
+/* ── PROCESO ── */
+.steps { display: flex; flex-direction: column; gap: 0; margin-top: 3.5rem; position: relative; }
+.steps::before { content: ''; position: absolute; left: 21px; top: 8px; bottom: 8px; width: 1px; background: linear-gradient(to bottom, var(--gold), transparent); opacity: 0.25; }
+.step { display: flex; gap: 2.2rem; padding: 2.2rem 0; border-bottom: 1px solid rgba(59,42,26,0.08); position: relative; }
+.step:last-child { border-bottom: none; }
+.step-dot {
+  width: 44px; height: 44px; border-radius: 50%; background: var(--cream-dark);
+  border: 1px solid rgba(201,149,58,0.35); display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; font-family: 'Fraunces', serif; font-size: 1.2rem; font-weight: 300;
+  color: var(--gold); position: relative; z-index: 1;
+}
+.step-body h3 {
+  font-family: 'Fraunces', serif; font-size: 1.6rem; font-weight: 400;
+  color: var(--brown); margin-bottom: 0.45rem; padding-top: 6px; line-height: 1.2;
+}
+.step-body p { font-family: 'Lato', sans-serif; font-size: 1.05rem; font-weight: 300; color: var(--text-muted); line-height: 1.8; }
+
+/* ── PRECIO ── */
+.pricing-wrap { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5px; background: rgba(59,42,26,0.1); border-radius: 20px; overflow: hidden; margin-top: 3.5rem; }
+.price-card { background: var(--white); padding: 2.8rem 2.4rem; }
+.price-card.highlight { background: var(--brown); }
+.price-label { font-family: 'Lato', sans-serif; font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--text-muted); font-weight: 700; margin-bottom: 1.6rem; display: block; }
+.price-card.highlight .price-label { color: var(--gold-light); }
+.price-amount { font-family: 'Fraunces', serif; font-size: 4.8rem; font-weight: 300; color: var(--brown); line-height: 1; margin-bottom: 0.3rem; }
+.price-card.highlight .price-amount { color: var(--white); }
+.price-unit { font-family: 'Lato', sans-serif; font-size: 1rem; color: var(--text-muted); margin-bottom: 2.2rem; font-weight: 300; }
+.price-card.highlight .price-unit { color: rgba(253,250,245,0.45); }
+.price-features { list-style: none; display: flex; flex-direction: column; gap: 1rem; }
+.price-features li { font-family: 'Lato', sans-serif; font-size: 1.05rem; font-weight: 300; color: var(--text-muted); display: flex; gap: 1rem; align-items: flex-start; line-height: 1.55; }
+.price-card.highlight .price-features li { color: rgba(253,250,245,0.65); }
+.price-features li::before { content: '–'; color: var(--gold); flex-shrink: 0; margin-top: 1px; }
+
+/* ── MANUAL DE MARCA ── */
+.brand-bg { background: var(--cream-dark); padding: 7rem 0; }
+.brand-inner { max-width: 1040px; margin: 0 auto; padding: 0 2rem; }
+.brand-block { margin-bottom: 5rem; }
+.brand-block:last-child { margin-bottom: 0; }
+.brand-block-title {
+  font-family: 'Fraunces', serif; font-size: clamp(1.8rem, 4.5vw, 3rem);
+  font-weight: 300; color: var(--brown); margin-bottom: 0.7rem; line-height: 1.15;
+}
+.brand-block-desc { font-family: 'Lato', sans-serif; font-size: 1.05rem; font-weight: 300; color: var(--text-muted); line-height: 1.85; max-width: 580px; margin-bottom: 2.4rem; }
+
+/* Concepto logo */
+.logo-concept { background: var(--white); border-radius: 18px; padding: 3rem 2.6rem; display: flex; align-items: center; gap: 3rem; flex-wrap: wrap; }
+.logo-mark { width: 100px; height: 100px; border-radius: 50%; background: var(--brown); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.logo-mark-inner { font-family: 'Fraunces', serif; font-size: 2.8rem; font-style: italic; font-weight: 300; color: var(--gold-light); }
+.logo-wordmark { display: flex; flex-direction: column; gap: 6px; }
+.logo-name { font-family: 'Fraunces', serif; font-size: 2.2rem; font-weight: 300; color: var(--brown); }
+.logo-tagline { font-family: 'Lato', sans-serif; font-size: 11px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--gold); font-weight: 700; }
+.logo-notes { flex: 1; min-width: 200px; }
+.logo-notes p { font-family: 'Lato', sans-serif; font-size: 1rem; font-weight: 300; color: var(--text-muted); line-height: 1.8; }
+
+/* Paleta */
+.palette { display: flex; flex-wrap: wrap; gap: 14px; }
+.swatch-group { display: flex; flex-direction: column; gap: 8px; flex: 1; min-width: 130px; max-width: 190px; }
+.swatch { height: 96px; border-radius: 14px; transition: transform 0.15s; cursor: default; }
+.swatch:hover { transform: scale(1.03); }
+.swatch-name { font-family: 'Lato', sans-serif; font-size: 0.95rem; font-weight: 700; color: var(--brown); }
+.swatch-hex { font-family: 'Lato', sans-serif; font-size: 0.85rem; font-weight: 300; color: var(--text-muted); letter-spacing: 0.04em; }
+.swatch-role { font-family: 'Lato', sans-serif; font-size: 0.82rem; font-weight: 300; color: var(--text-muted); font-style: italic; }
+
+/* Tipografía */
+.type-samples { display: flex; flex-direction: column; gap: 1.5px; background: rgba(59,42,26,0.08); border-radius: 18px; overflow: hidden; }
+.type-sample { background: var(--white); padding: 2.4rem 2.6rem; }
+.type-meta { font-family: 'Lato', sans-serif; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); font-weight: 700; margin-bottom: 1.1rem; }
+.type-display { font-family: 'Fraunces', serif; font-size: clamp(2.4rem, 6.5vw, 4.2rem); font-weight: 300; color: var(--brown); line-height: 1.1; }
+.type-display-italic { font-family: 'Fraunces', serif; font-size: clamp(2rem, 5vw, 3.4rem); font-weight: 300; font-style: italic; color: var(--brown-light); line-height: 1.15; }
+.type-body-sample { font-family: 'Lato', sans-serif; font-size: clamp(1.05rem, 2vw, 1.2rem); font-weight: 300; color: var(--text-muted); line-height: 1.9; max-width: 580px; }
+.type-body-bold { font-family: 'Lato', sans-serif; font-size: clamp(1.05rem, 2vw, 1.15rem); font-weight: 700; color: var(--brown); line-height: 1.6; max-width: 580px; }
+.type-label-sample { font-family: 'Lato', sans-serif; font-size: 11px; letter-spacing: 0.26em; text-transform: uppercase; font-weight: 700; color: var(--gold); }
+
+/* Voz */
+.voice-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5px; background: rgba(59,42,26,0.08); border-radius: 18px; overflow: hidden; }
+.voice-card { background: var(--white); padding: 2.2rem 2rem; }
+.voice-card h4 { font-family: 'Fraunces', serif; font-size: 1.5rem; font-weight: 400; color: var(--brown); margin-bottom: 0.6rem; }
+.voice-card p { font-family: 'Lato', sans-serif; font-size: 1rem; font-weight: 300; color: var(--text-muted); line-height: 1.75; }
+.voice-tag { display: inline-block; margin-top: 1.1rem; font-family: 'Lato', sans-serif; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 700; padding: 4px 12px; border-radius: 100px; }
+.voice-tag.si { background: rgba(201,149,58,0.12); color: var(--gold); }
+.voice-tag.no { background: rgba(59,42,26,0.08); color: var(--text-muted); }
+
+/* Elementos visuales */
+.visual-elements { display: flex; flex-wrap: wrap; gap: 12px; }
+.visual-el { background: var(--white); border-radius: 14px; padding: 1.8rem 2rem; flex: 1; min-width: 160px; }
+.visual-el-icon { font-size: 1.7rem; margin-bottom: 0.9rem; }
+.visual-el h4 { font-family: 'Lato', sans-serif; font-size: 1rem; font-weight: 700; color: var(--brown); margin-bottom: 0.45rem; }
+.visual-el p { font-family: 'Lato', sans-serif; font-size: 0.95rem; font-weight: 300; color: var(--text-muted); line-height: 1.7; }
+
+/* ── CTA ── */
+.cta-section { background: var(--gold); padding: 7rem 2rem; text-align: center; }
+.cta-section h2 {
+  font-family: 'Fraunces', serif; font-size: clamp(2.6rem, 7.5vw, 4.8rem);
+  font-weight: 300; color: var(--brown); max-width: 700px; margin: 0 auto 1.4rem; line-height: 1.15;
+}
+.cta-section h2 em { font-style: italic; }
+.cta-section p { font-family: 'Lato', sans-serif; font-size: 1.15rem; font-weight: 300; color: rgba(42,30,18,0.65); margin-bottom: 3rem; }
+.btn {
+  display: inline-block; background: var(--brown); color: var(--white);
+  font-family: 'Lato', sans-serif; font-size: 0.875rem; font-weight: 700;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  padding: 1.2rem 3.2rem; border-radius: 100px; text-decoration: none;
+  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 4px 28px rgba(42,30,18,0.22);
+}
+.btn:hover { transform: translateY(-2px); box-shadow: 0 10px 36px rgba(42,30,18,0.28); }
+
+/* ── FOOTER ── */
+footer { background: var(--brown); padding: 3.5rem 2rem; text-align: center; }
+footer p { font-family: 'Lato', sans-serif; font-size: 0.95rem; color: rgba(253,250,245,0.3); font-weight: 300; letter-spacing: 0.05em; }
+footer strong { color: var(--gold-light); font-weight: 700; }
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp { from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)} }
+@keyframes scrollPulse { 0%,100%{opacity:.4;transform:scaleY(1)}50%{opacity:1;transform:scaleY(1.15)} }
+.reveal { opacity:0; transform:translateY(30px); transition:opacity 0.75s ease, transform 0.75s ease; }
+.reveal.visible { opacity:1; transform:none; }
+
+@media(max-width:640px){
+  .section,.brand-inner,.services-inner{padding-left:1.25rem;padding-right:1.25rem;}
+  .logo-concept{flex-direction:column;gap:1.5rem;}
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-grain"></div>
+  <span class="badge">Propuesta exclusiva · Vyntra Orbit</span>
+  <p class="hero-eyebrow">Para Café Sorbo de Ángel</p>
+  <h1>Su historia merece<br><em>ser encontrada</em></h1>
+  <p class="hero-sub">Tienen un café de finca propia, reseñas extraordinarias y una comunidad fiel. Solo falta un paso: que el mundo digital los encuentre tan fácilmente como quienes ya los conocen.</p>
+  <div class="scroll-hint">
+    <span>Ver propuesta</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- DIAGNÓSTICO -->
+<div class="section">
+  <p class="section-label reveal">El diagnóstico</p>
+  <h2 class="reveal">Lo que está pasando <em>ahora mismo</em></h2>
+  <p class="lead reveal">Café Sorbo de Ángel tiene todo para crecer — pero hay fricciones digitales que les están costando clientes sin que lo noten.</p>
+  <div class="problem-grid reveal">
+    <div class="problem-item">
+      <span class="problem-icon">☕</span>
+      <h3>Sin menú digital</h3>
+      <p>Un cliente nuevo llega, busca en línea y no encuentra nada. Ese momento de duda cuesta ventas todos los días.</p>
+    </div>
+    <div class="problem-item">
+      <span class="problem-icon">📱</span>
+      <h3>Sin presencia web propia</h3>
+      <p>Google Maps no es suficiente. Sin una página propia, no controlan su primera impresión digital.</p>
+    </div>
+    <div class="problem-item">
+      <span class="problem-icon">💬</span>
+      <h3>Mensajes sin respuesta rápida</h3>
+      <p>Cada consulta por Instagram o WhatsApp requiere tiempo del equipo. Hay una mejor manera de atender sin esfuerzo extra.</p>
+    </div>
+    <div class="problem-item">
+      <span class="problem-icon">🌿</span>
+      <h3>Historia sin contar</h3>
+      <p>Tienen café de finca propia — eso es extraordinario. Casi ningún cliente digital lo sabe todavía.</p>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- SERVICIOS -->
+<div class="services-bg">
+  <div class="services-inner">
+    <p class="section-label reveal">Lo que proponemos</p>
+    <h2 class="reveal">Todo lo que necesitan.<br><em>En una sola entrega.</em></h2>
+    <p class="lead reveal">No vendemos tecnología. Vendemos que sus clientes vivan una experiencia completa antes de pedir su primer sorbo.</p>
+    <div class="service-cards reveal">
+      <div class="service-card featured">
+        <span class="service-num">01</span>
+        <h3>Menú digital con identidad propia</h3>
+        <p>Una página web elegante con su menú completo, fotos, la historia de la finca y código QR para imprimir. Accesible desde cualquier celular en segundos. Diseñada rigurosamente bajo la estética de su marca.</p>
+        <span class="service-tag">Link + QR · Actualizable · 100% personalizado</span>
+      </div>
+      <div class="service-card">
+        <span class="service-num">02</span>
+        <h3>Posibilidad de Chatbot</h3>
+        <p>Como valor adicional, pueden sumar un chatbot que responda mensajes automáticamente, comparta el menú al instante y atraiga mejor a los clientes — sin que el equipo tenga que estar pendiente del celular.</p>
+        <span class="service-tag">Opcional · Atracción de clientes</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- GARANTÍA -->
+<div class="guarantee-strip">
+  <p>Todo será rigurosamente diseñado bajo la estética deseada de su marca — no usamos plantillas, no usamos atajos. Cada detalle refleja quiénes son.</p>
+</div>
+
+<!-- PROCESO -->
+<div class="section">
+  <p class="section-label reveal">¿Cómo funciona?</p>
+  <h2 class="reveal">Del acuerdo al <em>lanzamiento</em><br>en menos de 72 horas</h2>
+  <div class="steps reveal">
+    <div class="step">
+      <div class="step-dot">1</div>
+      <div class="step-body">
+        <h3>Nos reunimos (30 minutos)</h3>
+        <p>Entendemos su menú, su identidad y lo que quieren transmitir. Con eso tenemos todo lo que necesitamos para empezar a construir.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-dot">2</div>
+      <div class="step-body">
+        <h3>Diseñamos con su estética</h3>
+        <p>Creamos cada pieza visual adaptada a los colores, tipografía y personalidad de Café Sorbo de Ángel. Nada genérico, nada de plantillas.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-dot">3</div>
+      <div class="step-body">
+        <h3>Revisión y aprobación</h3>
+        <p>Les mostramos el resultado antes de publicar. Ajustamos lo que sea necesario hasta que quede exactamente como lo imaginan.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-dot">4</div>
+      <div class="step-body">
+        <h3>Lanzamiento en menos de 72 horas</h3>
+        <p>Publicamos el menú, les entregamos el QR listo para imprimir y quedan activos. Todo en menos de tres días desde el primer mensaje.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- PRECIO -->
+<div class="section">
+  <p class="section-label reveal">Inversión</p>
+  <h2 class="reveal">Transparente,<br><em>sin sorpresas</em></h2>
+  <p class="lead reveal">Un único pago. Sin mensualidades ocultas. Sin contratos largos.</p>
+  <div class="pricing-wrap reveal">
+    <div class="price-card highlight">
+      <span class="price-label">Paquete completo</span>
+      <div class="price-amount">$300.000</div>
+      <div class="price-unit">COP · pago único · todo incluido</div>
+      <ul class="price-features">
+        <li>Menú digital diseñado con su identidad de marca</li>
+        <li>Historia de la finca integrada en la página</li>
+        <li>Código QR personalizado listo para imprimir</li>
+        <li>Manual de identidad visual base</li>
+        <li>Soporte de ajustes por 30 días</li>
+        <li>Entrega garantizada en menos de 72 horas</li>
+      </ul>
+    </div>
+    <div class="price-card">
+      <span class="price-label">¿Por qué este precio?</span>
+      <p style="font-family:'Lato',sans-serif;font-size:1.05rem;font-weight:300;color:var(--text-muted);line-height:1.85;margin-bottom:1.8rem;">
+        No es un template descargado. Es un producto construido específicamente para Café Sorbo de Ángel, con su historia, su paleta de colores, su tipografía y su menú real.
+      </p>
+      <p style="font-family:'Lato',sans-serif;font-size:1.05rem;font-weight:300;color:var(--text-muted);line-height:1.85;">
+        Contratar un diseñador freelance cuesta $800.000 o más, y una agencia puede superar los $2.000.000. Ofrecemos la misma calidad a una fracción del costo — porque creemos en los negocios locales caleños.
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- MANUAL DE MARCA -->
+<div class="brand-bg">
+  <div class="brand-inner">
+    <p class="section-label reveal">Incluido en el paquete</p>
+    <h2 class="reveal" style="color:var(--brown);">Manual de <em>identidad</em><br>para Café Sorbo de Ángel</h2>
+    <p class="lead reveal" style="margin-bottom:5rem;">Entregamos una guía de marca base para que su identidad sea consistente en todos los canales — redes sociales, impresión y presencia digital.</p>
+
+    <div class="brand-block reveal">
+      <div class="brand-block-title">Concepto de marca</div>
+      <div class="brand-block-desc">La identidad parte de dos ideas: la calidez artesanal del café de origen y la elegancia discreta de un espacio donde el tiempo se detiene. "Sorbo de Ángel" evoca delicadeza — la marca debe reflejarlo en cada punto de contacto.</div>
+      <div class="logo-concept">
+        <div class="logo-mark">
+          <span class="logo-mark-inner">S</span>
+        </div>
+        <div class="logo-wordmark">
+          <span class="logo-name">Sorbo de Ángel</span>
+          <span class="logo-tagline">Café de origen · Cali, Colombia</span>
+        </div>
+        <div class="logo-notes">
+          <p>El símbolo circular evoca el grano de café y el ciclo completo — de la finca a la taza. Fraunces da una calidez vintage con personalidad moderna, sin caer en lo retro excesivo. El tagline ancla el origen geográfico como valor diferencial.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="brand-block reveal">
+      <div class="brand-block-title">Paleta de colores</div>
+      <div class="brand-block-desc">Inspirada en los tonos del café en sus distintas fases: la crema del latte, el tostado del grano, el dorado de la miel y el marrón profundo de la tierra caficultora.</div>
+      <div class="palette">
+        <div class="swatch-group">
+          <div class="swatch" style="background:#3B2A1A;"></div>
+          <span class="swatch-name">Cacao Profundo</span>
+          <span class="swatch-hex">#3B2A1A</span>
+          <span class="swatch-role">Color principal · textos · fondo oscuro</span>
+        </div>
+        <div class="swatch-group">
+          <div class="swatch" style="background:#C9953A;"></div>
+          <span class="swatch-name">Miel Dorada</span>
+          <span class="swatch-hex">#C9953A</span>
+          <span class="swatch-role">Acento principal · llamadas a la acción</span>
+        </div>
+        <div class="swatch-group">
+          <div class="swatch" style="background:#A07850;"></div>
+          <span class="swatch-name">Tostado Medio</span>
+          <span class="swatch-hex">#A07850</span>
+          <span class="swatch-role">Color secundario · detalles y variantes</span>
+        </div>
+        <div class="swatch-group">
+          <div class="swatch" style="background:#F5F0E8;border:1px solid rgba(59,42,26,0.12);"></div>
+          <span class="swatch-name">Crema Latte</span>
+          <span class="swatch-hex">#F5F0E8</span>
+          <span class="swatch-role">Fondo principal · espacios en blanco</span>
+        </div>
+        <div class="swatch-group">
+          <div class="swatch" style="background:#E8C87A;"></div>
+          <span class="swatch-name">Oro Claro</span>
+          <span class="swatch-hex">#E8C87A</span>
+          <span class="swatch-role">Sobre fondos oscuros · detalles sutiles</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="brand-block reveal">
+      <div class="brand-block-title">Tipografía</div>
+      <div class="brand-block-desc">Fraunces para titulares: serifa con encanto vintage y personalidad cálida, diseñada para marcas artesanales y con alma. Lato para cuerpo de texto: moderna, legible y versátil en cualquier soporte.</div>
+      <div class="type-samples">
+        <div class="type-sample">
+          <div class="type-meta">Fraunces Regular · Titulares y nombre de marca</div>
+          <div class="type-display">Café de origen, hecho con alma</div>
+        </div>
+        <div class="type-sample">
+          <div class="type-meta">Fraunces Italic · Frases destacadas y citas</div>
+          <div class="type-display-italic">Un sorbo que cuenta una historia</div>
+        </div>
+        <div class="type-sample">
+          <div class="type-meta">Lato Light · Cuerpo de texto y descripciones de menú</div>
+          <div class="type-body-sample">Nuestro café viene directamente de la finca familiar. Cada grano es seleccionado a mano, secado al sol y tostado en pequeños lotes para preservar los matices únicos del terroir vallecaucano.</div>
+        </div>
+        <div class="type-sample">
+          <div class="type-meta">Lato Bold · Precios, énfasis y datos importantes</div>
+          <div class="type-body-bold">Espresso doble · $6.000 &nbsp;|&nbsp; Pour Over · $9.000 &nbsp;|&nbsp; Cold Brew · $11.000</div>
+        </div>
+        <div class="type-sample">
+          <div class="type-meta">Lato Bold + espaciado · Etiquetas y categorías</div>
+          <div class="type-label-sample">Espresso · Pour Over · Cold Brew · Origen Colombia · Finca Propia</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="brand-block reveal">
+      <div class="brand-block-title">Voz de marca</div>
+      <div class="brand-block-desc">La forma en que Café Sorbo de Ángel habla debe sentirse como la dueña de la tienda — cálida, con conocimiento genuino del café, nunca pretenciosa ni corporativa.</div>
+      <div class="voice-grid">
+        <div class="voice-card">
+          <h4>Cercana</h4>
+          <p>Habla de tú a tú, sin formalidades exageradas. El cliente es un invitado especial, no un número de orden.</p>
+          <span class="voice-tag si">✓ Sí</span>
+        </div>
+        <div class="voice-card">
+          <h4>Experta con humildad</h4>
+          <p>Conoce el proceso del café, el origen, la tuesta. Comparte ese conocimiento con naturalidad, sin alardear.</p>
+          <span class="voice-tag si">✓ Sí</span>
+        </div>
+        <div class="voice-card">
+          <h4>Poética sin exagerar</h4>
+          <p>"Un sorbo que despierta" sí. "La experiencia sensorial transformadora definitiva" no. Menos es más.</p>
+          <span class="voice-tag si">✓ Sí</span>
+        </div>
+        <div class="voice-card">
+          <h4>Corporativa o fría</h4>
+          <p>Evitar: "soluciones de café", "propuesta de valor", "experiencias de impacto". Ese lenguaje aleja.</p>
+          <span class="voice-tag no">✗ No</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="brand-block reveal">
+      <div class="brand-block-title">Elementos visuales recomendados</div>
+      <div class="brand-block-desc">Guía de imágenes y recursos que construyen coherencia de marca en redes sociales, menú digital e impresión.</div>
+      <div class="visual-elements">
+        <div class="visual-el">
+          <div class="visual-el-icon">📸</div>
+          <h4>Fotografía</h4>
+          <p>Luz natural suave, tonos cálidos y terrosos. Tazas en mano, granos en mesa, procesos artesanales. Sin filtros fuertes.</p>
+        </div>
+        <div class="visual-el">
+          <div class="visual-el-icon">🌿</div>
+          <h4>Texturas</h4>
+          <p>Madera, lino, cerámica y papel kraft. Materiales naturales que refuercen el carácter artesanal y el origen de finca.</p>
+        </div>
+        <div class="visual-el">
+          <div class="visual-el-icon">✦</div>
+          <h4>Ornamentos</h4>
+          <p>Líneas delgadas, separadores simples, iniciales estilizadas. Nunca recargado ni excesivamente moderno.</p>
+        </div>
+        <div class="visual-el">
+          <div class="visual-el-icon">📐</div>
+          <h4>Composición</h4>
+          <p>Espacios en blanco generosos. El producto es el héroe — el fondo lo enmarca, nunca compite con él.</p>
+        </div>
+        <div class="visual-el">
+          <div class="visual-el-icon">🔤</div>
+          <h4>Tipografía aplicada</h4>
+          <p>Fraunces en grande para impacto. Lato en texto secundario. Nunca mezclar más de dos familias tipográficas.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- CTA -->
+<div class="cta-section">
+  <h2>¿Listos para dar<br><em>el siguiente sorbo?</em></h2>
+  <p>Respondemos hoy mismo. Sin compromiso, sin presión.</p>
+  <a href="https://wa.me/573216013430?text=Hola%20Mauricio%2C%20vi%20la%20propuesta%20de%20Vyntra%20Orbit%20y%20quiero%20saber%20m%C3%A1s" class="btn">Hablemos por WhatsApp</a>
+</div>
+
+<footer>
+  <p>Propuesta preparada por <strong>Vyntra Orbit</strong> para Café Sorbo de Ángel · Mayo 2026</p>
+</footer>
+
+<script>
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      setTimeout(() => e.target.classList.add('visible'), i * 90);
+      obs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.08 });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
